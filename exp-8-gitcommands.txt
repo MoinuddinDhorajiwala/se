@@ -1,0 +1,20 @@
+mkdir git_practical
+cd git_practical
+git init
+echo "Hello Git!" > file1.txt
+git status
+git add file1.txt
+git commit -m "Initial commit - added file1.txt"
+git checkout -b feature-branch
+echo "This is from feature branch." >> file1.txt
+git add file1.txt
+git commit -m "Updated file1.txt in feature branch"
+git checkout main
+git merge feature-branch
+git log --oneline
+echo "Temporary file" > temp.txt
+git add temp.txt
+git commit -m "Added temp file"
+git rm temp.txt
+git commit -m "Removed temp file"
+git status
