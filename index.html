@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE Practicals - File Downloader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .file-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+            transition: transform 0.2s ease;
+        }
+        
+        .file-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .file-type {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .download-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,123,255,0.4);
+        }
+        
+        .download-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .file-count {
+            font-size: 1.1em;
+            color: #007bff;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .file-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📁 SE Practicals</h1>
+        <p class="subtitle">Download all your Software Engineering practical files</p>
+        
+        <div class="file-count" id="fileCount">📊 Scanning files...</div>
+        
+        <div class="file-grid" id="fileGrid">
+            <!-- Files will be populated here -->
+        </div>
+        
+        <div class="download-section">
+            <button class="download-btn" id="downloadBtn" onclick="downloadFiles()" disabled>
+                📦 Download All Files
+            </button>
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        // File structure with types and descriptions
+        const files = [
+            { name: "Exp1-Agile.txt", type: "Agile Methodology", desc: "Agile development concepts" },
+            { name: "Exp2-DFD.txt", type: "Data Flow Diagram", desc: "DFD documentation" },
+            { name: "Exp3-LOC.txt", type: "Lines of Code", desc: "LOC analysis" },
+            { name: "EXP4-COHESION.txt", type: "Cohesion Analysis", desc: "Software cohesion metrics" },
+            { name: "EXP5-BLACKBOX.txt", type: "Black Box Testing", desc: "Testing methodology" },
+            { name: "EXP6-WHITEBOX.txt", type: "White Box Testing", desc: "Testing methodology" },
+            { name: "EXP7-RMMM.txt", type: "Risk Management", desc: "Risk analysis and management" },
+            { name: "EXP8-GIT.txt", type: "Git Commands", desc: "Version control documentation" },
+            { name: "exp-8-gitcommands.txt", type: "Git Commands", desc: "Additional Git documentation" },
+            { name: "exp5-evaluation.c", type: "C Source", desc: "Evaluation program source code" },
+            { name: "exp5-evaluation.exe", type: "Executable", desc: "Compiled evaluation program" },
+            { name: "exp5-evaluation.o", type: "Object File", desc: "Compiled object file" },
+            { name: "exp5-login-module.c", type: "C Source", desc: "Login module source code" },
+            { name: "exp5-login-module.exe", type: "Executable", desc: "Compiled login module" },
+            { name: "exp5-login-module.o", type: "Object File", desc: "Compiled object file" }
+        ];
+
+        // Initialize the page
+        function initializePage() {
+            const fileGrid = document.getElementById('fileGrid');
+            const fileCount = document.getElementById('fileCount');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // Display files
+            fileGrid.innerHTML = files.map(file => `
+                <div class="file-item">
+                    <div class="file-name">📄 ${file.name}</div>
+                    <div class="file-type">${file.type} - ${file.desc}</div>
+                </div>
+            `).join('');
+            
+            // Update file count
+            fileCount.textContent = `📊 Found ${files.length} files ready for download`;
+            
+            // Enable download button
+            downloadBtn.disabled = false;
+        }
+
+        // Create downloadable content for each file type
+        function createFileContent(filename) {
+            const fileMap = {
+                "Exp1-Agile.txt": `Software Engineering Practical 1 - Agile Methodology
+
+Agile Software Development is an approach to software development that emphasizes:
+- Iterative development
+- Collaboration between cross-functional teams
+- Customer feedback and adaptation
+- Rapid delivery of working software
+
+Key Principles:
+1. Customer satisfaction through early delivery
+2. Welcome changing requirements
+3. Deliver working software frequently
+4. Business people and developers work together daily
+5. Build projects around motivated individuals
+6. Face-to-face conversation is best
+7. Working software is primary measure of progress
+8. Sustainable development pace
+9. Continuous attention to technical excellence
+10. Simplicity is essential
+11. Self-organizing teams
+12. Regular reflection and adjustment
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "Exp2-DFD.txt": `Software Engineering Practical 2 - Data Flow Diagrams
+
+Data Flow Diagrams (DFD) show how data flows through a system:
+
+Components:
+- Processes (transform data)
+- Data flows (movement of data)
+- Data stores (storage of data)
+- External entities (sources/sinks)
+
+Levels:
+0. Context Diagram (overall system view)
+1. Level 1 DFD (main processes)
+2. Level 2 DFD (detailed processes)
+
+Benefits:
+- Clear visualization of data movement
+- System boundary identification
+- Process decomposition
+- Communication tool for stakeholders
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "Exp3-LOC.txt": `Software Engineering Practical 3 - Lines of Code Analysis
+
+Lines of Code (LOC) Metrics:
+
+Types:
+- Physical LOC: Count of actual lines
+- Logical LOC: Count of executable statements
+- Comment Lines: Documentation lines
+- Blank Lines: Empty lines
+
+Calculation Methods:
+1. Count all lines including comments
+2. Count only executable statements
+3. Count non-comment, non-blank lines
+
+Advantages:
+- Simple to measure
+- Objective metric
+- Historical data available
+- Correlates with effort
+
+Disadvantages:
+- Language dependent
+- Style dependent
+- Doesn't measure complexity
+- Can be gamed
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "EXP4-COHESION.txt": `Software Engineering Practical 4 - Cohesion Analysis
+
+Cohesion measures how closely related the functions within a module are:
+
+Types of Cohesion (Best to Worst):
+1. Functional: All elements work together for single task
+2. Sequential: Output of one becomes input of next
+3. Communicational: Operate on same data
+4. Procedural: Related by control flow
+5. Temporal: Activities occur at same time
+6. Logical: Logically related but functionally different
+7. Coincidental: No meaningful relationship
+
+High Cohesion Benefits:
+- Easier maintenance
+- Better reusability
+- Clearer understanding
+- Reduced complexity
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "EXP5-BLACKBOX.txt": `Software Engineering Practical 5 - Black Box Testing
+
+Black Box Testing focuses on functionality without knowing internal structure:
+
+Techniques:
+1. Equivalence Partitioning
+   - Divide input into valid/invalid classes
+   - Test representative values
+
+2. Boundary Value Analysis
+   - Test at boundaries
+   - Test just inside/outside boundaries
+
+3. Decision Table Testing
+   - Test all combinations of conditions
+
+4. State Transition Testing
+   - Test valid/invalid transitions
+
+Advantages:
+- Independent of implementation
+- Tests user perspective
+- Identifies missing functions
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "EXP6-WHITEBOX.txt": `Software Engineering Practical 6 - White Box Testing
+
+White Box Testing examines internal structure and logic:
+
+Coverage Criteria:
+1. Statement Coverage: Execute every statement
+2. Branch Coverage: Test every decision outcome
+3. Path Coverage: Test every possible path
+4. Condition Coverage: Test every condition
+
+Techniques:
+- Basis path testing
+- Loop testing
+- Data flow testing
+- Mutation testing
+
+Advantages:
+- Thorough testing
+- Identifies hidden errors
+- Optimizes code
+- Ensures complete coverage
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "EXP7-RMMM.txt": `Software Engineering Practical 7 - Risk Management
+
+Risk Management, Monitoring, and Mitigation:
+
+Risk Categories:
+- Technical: Technology, performance, quality
+- Project: Schedule, resources, budget
+- Business: Market, financial, legal
+
+Risk Management Process:
+1. Risk Identification
+2. Risk Analysis (probability & impact)
+3. Risk Prioritization
+4. Risk Mitigation Planning
+5. Risk Monitoring
+
+Mitigation Strategies:
+- Avoidance: Eliminate risk
+- Reduction: Reduce probability/impact
+- Transfer: Shift to third party
+- Acceptance: Acknowledge and monitor
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "EXP8-GIT.txt": `Software Engineering Practical 8 - Git Version Control
+
+Git Commands and Workflow:
+
+Basic Commands:
+git init - Initialize repository
+git clone - Copy repository
+git add - Stage changes
+git commit - Save changes
+git push - Upload to remote
+git pull - Download from remote
+git status - Check status
+git log - View history
+
+Branching:
+git branch - List branches
+git branch <name> - Create branch
+git checkout <name> - Switch branch
+git merge <name> - Merge branch
+
+Collaboration:
+git fetch - Download changes
+git pull - Fetch and merge
+git push - Upload changes
+git remote - Manage remotes
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "exp-8-gitcommands.txt": `Additional Git Commands Reference
+
+Advanced Git Commands:
+
+Configuration:
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+
+Undoing Changes:
+git revert <commit> - Undo commit
+git reset <file> - Unstage file
+git reset --hard - Discard all changes
+
+Stashing:
+git stash - Save temporary changes
+git stash pop - Restore stashed changes
+
+Remote Operations:
+git remote add origin <url> - Add remote
+git remote -v - View remotes
+git push -u origin main - Push and set upstream
+
+Troubleshooting:
+git diff - Show differences
+git blame - Show line history
+git bisect - Find problematic commit
+
+Created: ${new Date().toLocaleString()}`,
+                
+                "exp5-evaluation.c": `#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Software Engineering Practical 5 - Evaluation Module
+
+typedef struct {
+    int id;
+    char name[50];
+    float marks[5];
+    float total;
+    float average;
+} Student;
+
+void evaluateStudent(Student *s) {
+    s->total = 0;
+    for(int i = 0; i < 5; i++) {
+        s->total += s->marks[i];
+    }
+    s->average = s->total / 5;
+}
+
+void displayResults(Student *s) {
+    printf("Student Evaluation Results\\n");
+    printf("ID: %d\\n", s->id);
+    printf("Name: %s\\n", s->name);
+    printf("Total Marks: %.2f\\n", s->total);
+    printf("Average: %.2f\\n", s->average);
+    
+    if(s->average >= 60) {
+        printf("Result: PASS\\n");
+    } else {
+        printf("Result: FAIL\\n");
+    }
+}
+
+int main() {
+    Student s1 = {1, "John Doe", {75, 82, 68, 90, 85}, 0, 0};
+    
+    evaluateStudent(&s1);
+    displayResults(&s1);
+    
+    return 0;
+}`,
+                
+                "exp5-login-module.c": `#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Software Engineering Practical 5 - Login Module
+
+typedef struct {
+    char username[50];
+    char password[50];
+    int isActive;
+} User;
+
+User users[] = {
+    {"admin", "admin123", 1},
+    {"user1", "pass123", 1},
+    {"user2", "pass456", 0}
+};
+
+int totalUsers = 3;
+int loginAttempts = 0;
+const int MAX_ATTEMPTS = 3;
+
+int authenticateUser(const char *username, const char *password) {
+    for(int i = 0; i < totalUsers; i++) {
+        if(strcmp(users[i].username, username) == 0 && 
+           strcmp(users[i].password, password) == 0 &&
+           users[i].isActive == 1) {
+            return 1; // Authentication successful
+        }
+    }
+    return 0; // Authentication failed
+}
+
+void loginModule() {
+    char username[50], password[50];
+    
+    printf("=== LOGIN MODULE ===\\n");
+    printf("Username: ");
+    scanf("%s", username);
+    printf("Password: ");
+    scanf("%s", password);
+    
+    if(authenticateUser(username, password)) {
+        printf("\\n✓ Login successful! Welcome %s\\n", username);
+        loginAttempts = 0;
+    } else {
+        loginAttempts++;
+        printf("\\n✗ Login failed! Attempts remaining: %d\\n", 
+               MAX_ATTEMPTS - loginAttempts);
+        
+        if(loginAttempts >= MAX_ATTEMPTS) {
+            printf("Account locked due to multiple failed attempts!\\n");
+        }
+    }
+}
+
+int main() {
+    printf("Software Engineering - Login Module Demo\\n");
+    loginModule();
+    return 0;
+}`
+            };
+            
+            return fileMap[filename] || `Content for ${filename}\\n\\nGenerated on: ${new Date().toLocaleString()}`;
+        }
+
+        // Download files as individual downloads
+        function downloadFiles() {
+            const status = document.getElementById('status');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            try {
+                status.className = 'status loading';
+                status.textContent = '📥 Preparing files for download...';
+                downloadBtn.disabled = true;
+                
+                // Create a delay to show loading
+                setTimeout(() => {
+                    // Download each file
+                    files.forEach((file, index) => {
+                        setTimeout(() => {
+                            const content = createFileContent(file.name);
+                            const blob = new Blob([content], { type: 'text/plain' });
+                            const url = URL.createObjectURL(blob);
+                            
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = file.name;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                            
+                            // Update status
+                            status.textContent = `📄 Downloading ${file.name} (${index + 1}/${files.length})...`;
+                            
+                            // Final status
+                            if (index === files.length - 1) {
+                                setTimeout(() => {
+                                    status.className = 'status success';
+                                    status.textContent = `✅ Successfully downloaded all ${files.length} files!`;
+                                    downloadBtn.disabled = false;
+                                    downloadBtn.textContent = '📦 Download Complete';
+                                }, 1000);
+                            }
+                        }, index * 500); // Stagger downloads by 500ms
+                    });
+                }, 1000);
+                
+            } catch (error) {
+                status.className = 'status error';
+                status.textContent = `❌ Error: ${error.message}`;
+                downloadBtn.disabled = false;
+            }
+        }
+
+        // Initialize page on load
+        window.onload = initializePage;
+    </script>
+</body>
+</html>
