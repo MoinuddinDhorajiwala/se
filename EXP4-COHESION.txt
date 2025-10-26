@@ -1,0 +1,87 @@
+Experiment 4 – Design of a Modular System (Cohesion and
+Coupling)
+Aim
+To design a modular software system by applying the principles of cohesion and coupling,
+ensuring that modules are functionally independent, maintainable, and reusable.
+Theory
+Modular Design is a fundamental concept in software engineering that divides a large system
+into smaller, independent, and manageable parts called modules.
+Each module performs a specific task and interacts with other modules through well-defined
+interfaces.
+Two key properties define good modular design:
+1. Cohesion
+• Cohesion measures the degree of relatedness among the elements within a module.
+• A highly cohesive module performs one specific, well-defined function.
+• Types of Cohesion (best to worst):
+o Functional Cohesion – All elements contribute to a single task.
+o Sequential Cohesion – Output of one part is input to another.
+o Communicational Cohesion – Operates on same input/output data.
+o Procedural Cohesion – Elements execute in a fixed order.
+o Temporal Cohesion – Elements executed in same time phase.
+o Logical Cohesion – Similar type of operations grouped together.
+o Coincidental Cohesion – Unrelated functions grouped together (worst).
+2. Coupling
+• Coupling measures the interdependence between different modules.
+• Low coupling means modules can function and be modified independently.
+• Types of Coupling (worst to best):
+o Content Coupling – One module modifies another directly.
+o Common Coupling – Shared global data.
+o Control Coupling – One module controls another’s behavior.
+o Stamp Coupling – Passes complex data structures.
+o Data Coupling – Passes only necessary data (best).
+Good Modular Design
+A well-designed system has:
+• High Cohesion within modules
+• Low Coupling between modules
+• Clear interfaces and strong encapsulation
+• Easier debugging, testing, and maintenance
+Software / Tools Used
+• Diagramming Tools: Draw.io, Lucidchart, StarUML, or pen-and-paper
+• Programming Environment (Optional):
+o Java / Python IDE (Eclipse, IntelliJ, PyCharm) for modular code illustration
+• Documentation Tools: Microsoft Word, Google Docs for design notes
+Procedure
+1. Identify Major Functional Areas
+o Analyze the system’s requirements (from SRS).
+o Break down the system into major functions or components (modules).
+(e.g., for Library System: Search Books, Issue Books, Manage Members,
+Generate Reports)
+2. Divide into Modules
+o Create separate modules for each major function.
+o Ensure each module performs one main task (functional cohesion).
+3. Define Module Interfaces
+o Specify how modules communicate (function calls, data exchange).
+o Pass only necessary parameters to maintain data coupling.
+4. Analyze Cohesion
+o Review each module internally to ensure all parts serve a common purpose.
+o Refactor modules that perform unrelated operations.
+5. Analyze Coupling
+o Identify dependencies between modules.
+o Eliminate unnecessary linkages and reduce shared data.
+6. Draw the Modular Design Diagram
+o Represent modules as boxes with arrows showing data/control flow.
+o Label each module clearly and indicate relationships.
+o Highlight interface boundaries.
+7. Validate the Design
+o Check that each module has one clear responsibility.
+o Verify that modules can be developed, tested, and reused independently.
+Observation / Example
+For a Library Management System, the modular design may include:
+• Modules:
+1. User Authentication
+2. Book Search
+3. Issue/Return Processing
+4. Catalog Management
+5. Report Generation
+• Cohesion Example:
+o Book Search module only handles book queries — Functional Cohesion.
+• Coupling Example:
+o Issue/Return Processing module interacts with Catalog Management via data
+parameters (book ID, member ID) — Data Coupling.
+This structure ensures each module is independent, easy to modify, and testable.
+Result / Conclusion
+The system was successfully divided into well-defined modules exhibiting high cohesion and
+low coupling.
+The modular design improved maintainability, reusability, and scalability.
+This experiment demonstrates that proper modularization leads to efficient development, easier
+debugging, and flexible future enhancements.

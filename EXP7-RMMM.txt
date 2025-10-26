@@ -1,0 +1,77 @@
+Experiment 7 – Project Risk Management and RMMM Plan
+Aim
+To understand the concept of project risk management and to prepare a Risk Mitigation,
+Monitoring, and Management (RMMM) Plan for a software project.
+Theory
+In software engineering, a risk is a potential event or problem that may negatively affect project
+success in terms of cost, time, quality, or performance.
+Project Risk Management is the process of identifying, analyzing, mitigating, and monitoring
+risks throughout the project lifecycle to ensure project stability and success.
+Types of Software Risks
+1. Project Risks:
+Affect schedule, budget, or resources (e.g., unrealistic deadlines, lack of manpower).
+2. Technical Risks:
+Involve design, implementation, or technology issues (e.g., untested tools, system
+integration problems).
+3. Business Risks:
+Influence market or customer value (e.g., requirement changes, low user adoption).
+4. Operational Risks:
+Affect infrastructure, workflow, or environment (e.g., hardware failure, poor
+communication).
+Risk Management Process
+1. Risk Identification: Listing potential risks that could impact the project.
+2. Risk Analysis: Assessing probability and impact of each risk.
+3. Risk Mitigation: Defining strategies to reduce the likelihood or impact of risks.
+4. Risk Monitoring: Continuously observing risks and tracking their status.
+5. Risk Management: Executing predefined actions when a risk becomes an issue.
+Risk Exposure Formula
+Risk Exposure (RE)=Probability×Impact\text{Risk Exposure (RE)} = \text{Probability} \times
+\text{Impact}Risk Exposure (RE)=Probability×Impact
+RMMM Plan
+An RMMM Plan (Risk Mitigation, Monitoring, and Management Plan) documents all identified
+risks, their likelihood, impact, mitigation strategies, and monitoring actions.
+It ensures proactive, structured risk handling throughout the project.
+Software / Tools Used
+• Documentation Tools: Microsoft Word, Google Docs, or Excel for tabular plans
+• Project Management Tools: Jira, Trello, or ClickUp (for tracking risks)
+• Communication Tools: Slack, Teams, or Email for monitoring updates
+Procedure
+1. Define the Project Scope and Objectives
+o Clearly specify the system to be developed (e.g., Online Examination System).
+2. Identify Potential Risks
+o List risks across categories: technical, project, business, and operational.
+3. Estimate Probability and Impact
+o Assign each risk a probability (Low/Medium/High) and an impact score (1–10).
+4. Calculate Risk Exposure (RE)
+o Use the formula:
+RE=Probability×ImpactRE = Probability \times ImpactRE=Probability×Impact
+o Prioritize risks based on RE value.
+5. Develop Mitigation Strategies
+o Create preventive actions to reduce the probability or severity of risks.
+6. Define Monitoring Mechanisms
+o Specify how each risk will be tracked or detected early (e.g., system logs, audits).
+7. Specify Management Actions
+o Define corrective measures to be taken if a risk materializes.
+8. Prepare and Document the RMMM Plan
+o Summarize all details in a structured table (as shown below).
+Observation / Example
+Case Study: <Scenario> System (ADD anything in place of the scenario )
+| **ID** | **Risk**                      | **Prob.**  | **Impact** | **RE** | **Mitigation**         | **Monitoring / Action**        |
+| ------ | ----------------------------- | ---------- | ---------- | ------ | ---------------------- | ------------------------------ |
+| **R1** | Server downtime               | High (0.7) | High (8)   | 5.6    | Use backup servers     | Check logs; switch to backup   |
+| **R2** | Data loss                     | Med (0.4)  | High (9)   | 3.6    | Regular backups        | Monitor DB; restore if needed  |
+| **R3** | Hacking / Unauthorized access | Med (0.5)  | High (8)   | 4.0    | Encrypt & secure login | Security audits; revoke access |
+| **R4** | Mid-project changes           | High (0.6) | Med (6)    | 3.6    | Use Agile model        | Track changes; update backlog  |
+| **R5** | Developer leaves              | Low (0.3)  | High (7)   | 2.1    | Share knowledge        | Watch team; assign backup      |
+
+Observations:
+• High-exposure risks (R1, R2, R3) require immediate mitigation.
+• Continuous monitoring (logs, audits, backups) enables early risk detection.
+• Proactive management actions (backup systems, recovery plans) minimize impact.
+Result / Conclusion
+The RMMM Plan for the software project was successfully prepared.
+All potential risks were identified, analyzed, and prioritized using probability–impact analysis.
+Mitigation strategies and monitoring mechanisms were defined to ensure early detection and
+control.
+This experiment demonstrates that effective risk management reduces uncertainty and
+increases project success by promoting proactive decision-making and preparedness.

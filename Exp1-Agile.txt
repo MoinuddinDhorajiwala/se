@@ -1,0 +1,64 @@
+Experiment 1 – Application of the Agile Process Models
+Aim
+To study and apply Agile process models for effective software development through iterative
+planning, collaboration, customer feedback, and continuous improvement.
+Theory
+Agile is an adaptive software development methodology that focuses on delivering small,
+working parts of a system in short cycles called iterations or sprints.
+It emphasizes:
+• Flexibility to adapt to requirement changes,
+• Collaboration between developers and stakeholders,
+• Customer feedback at every stage, and
+• Continuous delivery of value.
+The Agile Manifesto is based on four core values:
+1. Individuals and interactions over processes and tools
+2. Working software over comprehensive documentation
+3. Customer collaboration over contract negotiation
+4. Responding to change over following a plan
+Common Agile frameworks include:
+• Scrum: Uses time-boxed sprints (2–4 weeks) and defined roles—Product Owner, Scrum
+Master, and Development Team.
+• Kanban: Visualizes workflow with boards and limits work-in-progress.
+• Extreme Programming (XP): Stresses test-driven development, pair programming, and
+continuous integration.
+Agile ensures higher product quality, faster delivery, and better adaptability compared to
+traditional linear models like Waterfall.
+Software / Tools Used
+• Project Management: Jira, Trello, or Azure Boards
+• Version Control: Git, GitHub, GitLab
+• Development Environment: Visual Studio Code, Eclipse, IntelliJ IDEA
+• Communication & Collaboration: Slack, Microsoft Teams, Google Meet
+Procedure
+1. Requirement Gathering & User Stories
+o Collect requirements from stakeholders.
+o Write user stories with clear acceptance criteria.
+(e.g., “As a user, I want to log in so that I can access my account.”)
+2. Sprint Planning
+o Select user stories for the upcoming sprint.
+o Estimate effort using story points or ideal hours.
+3. Task Assignment
+o Break each story into smaller tasks.
+o Assign tasks via a Scrum/Kanban board.
+4. Sprint Execution
+o Conduct daily stand-up meetings to track progress.
+o Perform coding, testing, and continuous integration.
+5. Sprint Review
+o Demonstrate completed features to stakeholders.
+o Collect feedback for further improvement.
+6. Sprint Retrospective
+o Discuss what went well and what needs improvement.
+o Adjust workflow or sprint plan accordingly.
+Observation / Example
+A student team applied Agile to a Library Management System project.
+User stories included:
+• As a student, I want to search for books by title or author.
+• As a librarian, I want to add or remove books from the catalog.
+The team completed three sprints of two weeks each, continuously integrating and testing new
+features.
+Regular stand-up meetings and sprint reviews helped maintain progress and incorporate
+stakeholder feedback efficiently.
+Result / Conclusion
+The Agile model was successfully implemented for iterative and incremental software
+development.
+Through continuous collaboration, feedback, and adaptation, the project achieved improved
+quality, faster delivery, and enhanced team productivity.

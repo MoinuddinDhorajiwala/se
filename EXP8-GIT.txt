@@ -1,0 +1,79 @@
+Experiment 8 – Implementation of Version Control System
+(VCS using Git)
+Aim
+To study and implement Version Control Systems (VCS) for managing software projects
+effectively, ensuring collaboration, change tracking, rollback mechanisms, and version history
+maintenance.
+Theory
+In software engineering, projects are often developed by teams that make frequent code updates.
+Managing these changes manually can lead to confusion, code loss, or version conflicts.
+A Version Control System (VCS) provides an organized way to track, manage, and
+synchronize code changes across multiple developers.
+Types of Version Control Systems
+1. Centralized Version Control (CVCS):
+o A single central server stores all project versions.
+o Examples: Subversion (SVN), CVS.
+o Developers check out, modify, and commit code to the central repository.
+2. Distributed Version Control (DVCS):
+o Each developer has a complete local copy of the repository.
+o Enables offline work, branching, merging, and better fault tolerance.
+o Examples: Git, Mercurial.
+Key Features of VCS
+• Maintains commit history and version logs.
+• Allows multiple developers to collaborate simultaneously.
+• Supports rollback to previous stable versions.
+• Provides branching and merging for parallel feature development.
+• Detects and manages merge conflicts efficiently.
+Git is the most widely used DVCS. Hosting services like GitHub, GitLab, and Bitbucket
+provide remote repositories and collaboration platforms for developers.
+Software / Tools Used
+• Git (installed locally)
+• Remote Repository Platform: GitHub / GitLab / Bitbucket
+• Text Editor or IDE: Visual Studio Code, Eclipse, IntelliJ IDEA
+Procedure
+1. Initialize Repository
+o Create a project folder.
+o Open terminal and run:
+o git init
+This initializes a local Git repository.
+2. Add Files and Commit Changes
+o Create a sample source file (e.g., main.java, index.html).
+o Stage files:
+o git add .
+o Commit with a message:
+o git commit -m "Initial commit"
+3. Create and Switch Branches
+o Create a new branch for a feature:
+o git branch feature-1
+o git checkout feature-1
+o Make modifications and commit again.
+4. Merge Branches
+o Switch to main branch:
+o git checkout main
+o Merge the feature branch:
+o git merge feature-1
+5. Connect to Remote Repository
+o Create a new repository on GitHub.
+o Link remote repository:
+o git remote add origin <repo-URL>
+o git push -u origin main
+6. Collaborate with Team Members
+o Other developers clone the repository using:
+o git clone <repo-URL>
+o They create branches, make changes, push commits, and raise pull requests for
+review.
+Observation / Example
+During implementation of a Project Management Application:
+• Repository initialized with main and feature-UI branches.
+• Three commits were made — initial setup, UI addition, and bug fix.
+• Git successfully tracked all changes and allowed merging after review.
+• Merge conflicts were resolved through manual editing.
+• The remote GitHub repository reflected all commit history and contributors.
+Result / Conclusion
+Version control was successfully implemented using Git and GitHub.
+All project changes were tracked efficiently, and multiple contributors collaborated without data
+loss.
+Features like branching, merging, rollback, and version history were effectively
+demonstrated.
+This experiment proves that version control ensures systematic change management, team
+collaboration, and project reliability in modern software development.

@@ -1,0 +1,83 @@
+Experiment 5 – Writing Test Cases for Black Box Testing
+Aim
+To understand and apply Black Box Testing techniques by writing effective test cases for a
+given software or system, ensuring that the application performs correctly according to its
+functional requirements and specifications.
+Theory
+Black Box Testing (also known as Functional Testing) focuses on verifying the functionality
+of a software system without knowing its internal code or logic.
+Testers check whether the software gives the expected outputs for a variety of valid and invalid
+inputs, based solely on requirement specifications.
+Key Objectives
+• Validate that the system behaves as expected.
+• Detect incorrect or missing functions, interface errors, and performance issues.
+• Ensure user requirements are met before delivery.
+Common Techniques
+1. Equivalence Partitioning (EP):
+o Divide input data into valid and invalid partitions to reduce redundant test cases.
+2. Boundary Value Analysis (BVA):
+o Focus on inputs at the edges of allowable ranges.
+3. Decision Table Testing:
+o Represent input–output conditions in tabular form for complex logic.
+4. State Transition Testing:
+o Validate system behavior when moving between states (e.g., login → dashboard
+→ logout).
+Black Box Testing ensures that the software functions correctly from the end-user’s
+perspective.
+Software / Tools Used
+• System Under Test (SUT): Any application (e.g., Login module, Library System)
+• Requirement Specifications or User Stories
+• Spreadsheet / Word Processor for Test Case Documentation
+• Optional Testing Tools: Selenium, TestLink, JIRA for defect tracking
+Procedure
+1. Understand Requirements
+o Review the Software Requirement Specification (SRS) or user stories carefully.
+o Identify functional features to be tested.
+2. Identify Functionalities to Test
+o Break down the system into distinct features or modules (e.g., Login,
+Registration, Search).
+3. Design Test Cases Using Techniques
+o Apply EP and BVA to identify input partitions and boundary values.
+o Use Decision Table or State Transition Testing for complex cases.
+4. Write Test Cases
+Each test case should contain:
+o Test Case ID
+o Test Description
+o Preconditions
+o Test Steps
+o Test Data
+o Expected Result
+o Actual Result (to be filled after execution)
+o Status (Pass/Fail)
+Example Test Case:
+Field Description
+Test Case ID TC_001
+Test Description Verify login with valid credentials
+Preconditions User is on the login page
+Test Steps 1. Enter valid username 2. Enter valid password 3. Click “Login”
+Test Data Username = user123 Password = pass123
+Expected Result User navigates to the dashboard
+Actual Result (Filled after execution)
+Status Pass/Fail
+5. Execute Test Cases
+o Run each test case on the SUT.
+o Record actual outcomes and mark each as Pass or Fail.
+6. Log Defects
+o For failed test cases, document a defect report including:
+Test Case ID, description, steps to reproduce, and severity.
+7. Retest and Regression Testing
+o After fixes, rerun failed test cases and perform regression testing to ensure no new
+defects were introduced.
+Observation / Example
+During testing of a Login Module:
+• Total Test Cases = 10
+• Test Cases Passed = 8
+• Test Cases Failed = 2 (incorrect error message, UI misalignment)
+Defects were logged with IDs D001 and D002 and fixed in subsequent builds.
+Regression testing confirmed no new issues.
+Result / Conclusion
+Black Box Testing was successfully performed using designed test cases.
+The process helped verify software functionality, detect defects, and ensure compliance with user
+requirements.
+By applying techniques such as Equivalence Partitioning and Boundary Value Analysis, students
+learned to write systematic and effective test cases that improve software quality and reliability.

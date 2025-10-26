@@ -1,0 +1,64 @@
+Experiment 2 – Structured Data Flow Analysis
+Aim
+To understand and apply the concept of Data Flow Diagrams (DFDs) by performing structured
+data flow analysis and creating hierarchical DFDs (Context, Level-0, and Level-1) for a given
+system case study.
+Theory
+Structured Data Flow Analysis is a graphical technique used in software engineering to
+represent how data moves through a system. It focuses on what data is processed and where it
+flows, rather than how it is implemented.
+The main tool used is the Data Flow Diagram (DFD), which provides a top-down, hierarchical
+view of data movement, processes, data stores, and external entities in a system.
+Types of DFDs
+1. Context Diagram (Level 0):
+Represents the whole system as a single process interacting with external entities (users,
+other systems, etc.).
+2. Level-0 DFD:
+Decomposes the system into major processes, data stores, and data flows.
+3. Level-1 DFD:
+Provides detailed decomposition of one or more Level-0 processes into sub-processes.
+Standard DFD Symbols (Gane-Sarson Notation)
+Symbol Representation Description
+Rectangle External Entity Source or destination of data
+Circle / Rounded Rectangle Process Transforms input data into output data
+Open Rectangle Data Store Repository for storing data
+Arrow Data Flow Direction of data movement
+Basic Rules for DFD Construction
+• Maintain balance between levels — input/output flows must match.
+• No direct data flow between two entities or two data stores.
+• Every process must have at least one input and one output.
+• Avoid black holes (data enters but never leaves) and miracles (output without input).
+Software / Tools Used
+• Diagramming Tools: Draw.io, Lucidchart, Microsoft Visio, or Google Diagrams
+• Alternative: Pen-and-paper sketches for manual submission
+• Optional Software: StarUML, Visual Paradigm, or any DFD-supporting CASE tool
+Procedure
+1. Identify System Components
+o List external entities (e.g., user, admin, supplier).
+o Identify major processes (e.g., manage users, process orders).
+o Define data stores (e.g., database tables, logs).
+o Determine data flows between components.
+2. Draw the Context Diagram (Level 0)
+o Represent the entire system as a single process.
+o Connect external entities to the system with labeled data flows.
+3. Develop the Level-0 DFD
+o Decompose the main process into 3–5 major sub-processes.
+o Add data stores and connect them with relevant data flows.
+o Verify that inputs and outputs match the context diagram.
+4. Create a Sample Level-1 DFD
+o Select one Level-0 process and break it into sub-processes.
+o Add detailed data flows and ensure balance with the parent diagram.
+5. Validate and Review
+o Check for missing labels, unmatched flows, or unused data.
+o Ensure all diagrams follow the DFD construction rules.
+Observation / Example
+For example, consider a Library Management System (LMS).
+• Entities: Member, Librarian, Book Supplier
+• Processes: Search Books, Issue Book, Return Book, Manage Catalog
+• Data Stores: Book Database, Member Records, Transaction Log
+Context Diagram (Level -0 DFD ) :
+Level-1 DFD :
+Result / Conclusion
+Structured data flow analysis was successfully carried out using DFDs.
+The system’s data movement was clearly visualized across multiple levels, showing the
+interaction between entities, processes, and data stores.

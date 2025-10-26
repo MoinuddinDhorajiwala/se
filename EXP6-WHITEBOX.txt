@@ -1,0 +1,82 @@
+Experiment 6 – Writing Test Cases for White Box Testing
+Aim
+To study and design test cases for White Box Testing using statement, branch, and path
+coverage criteria, ensuring all parts of the program logic are executed and verified.
+Theory
+White Box Testing (also known as Structural Testing or Glass Box Testing) is a testing
+method where the internal structure, design, and implementation of the code are known to the
+tester.
+It focuses on verifying code logic, control flow, and decision structures.
+Key Coverage Types
+1. Statement Coverage:
+Ensures every executable statement in the program runs at least once.
+2. Branch Coverage:
+Ensures each decision (true/false condition) is executed in both directions.
+3. Path Coverage:
+Ensures all independent paths through the program are executed at least once.
+Cyclomatic Complexity (CC)
+Cyclomatic Complexity measures the number of independent paths through the program’s
+source code.
+It is calculated using the Control Flow Graph (CFG) of the program.
+CC=E−N+2P\text{CC} = E - N + 2PCC=E−N+2P
+Where:
+• E = Number of edges in CFG
+• N = Number of nodes in CFG
+• P = Number of connected components (usually 1 for a single program)
+The value of CC represents the minimum number of test cases required for full path coverage.
+Advantages of White Box Testing:
+• Ensures internal logic correctness
+• Detects hidden errors and unreachable code
+• Improves code efficiency and reliability
+Software / Tools Used
+• Programming Environment: C / C++ / Java / Python
+• IDE: Code::Blocks, Eclipse, IntelliJ, or VS Code
+• Optional Tools: Flowgorithm, Lucidchart, or Draw.io for drawing Control Flow Graphs
+Procedure
+1. Select a Program
+o Choose a small code segment with conditional and looping statements (e.g., to
+check prime numbers or calculate factorial).
+2. Draw the Control Flow Graph (CFG)
+o Represent each statement as a node and each control transfer (decision or loop) as
+an edge.
+3. Calculate Cyclomatic Complexity (CC)
+o Use the formula:
+CC=E−N+2PCC = E - N + 2PCC=E−N+2P
+o This determines the number of independent paths to test.
+4. Identify Independent Paths
+o List unique paths that represent different decision outcomes or loop conditions.
+5. Design Test Cases
+o Create test cases to cover all statements, branches, and independent paths.
+o Include both typical and boundary conditions.
+6. Execute Test Cases and Record Results
+o Run the program with each test input.
+o Compare actual and expected results, marking each test case as Pass/Fail.
+Observation / Example
+Program:
+bool isPrime(int n) {
+ if (n <= 1)
+ return false;
+ for (int i = 2; i <= n/2; i++) {
+ if (n % i == 0)
+ return false;
+ }
+ return true;
+}
+Control Flow Graph:
+• 6 nodes, 7 edges, P = 1
+CC=E−N+2P=7−6+2(1)=3
+Hence, 3 independent paths are required for complete path coverage.
+Test Case ID Input (n) Expected Output Coverage Path Description
+TC1 0 false Statement + Branch Covers n <= 1 condition
+TC2 4 false Branch + Path Covers divisible number case
+TC3 17 true Path Coverage Covers non-divisible (prime) path
+Observation Summary:
+• All branches and decisions were executed.
+• Cyclomatic Complexity = 3 → 3 test cases sufficient.
+• Statement, branch, and path coverage achieved.
+Result / Conclusion
+White Box Testing was successfully performed using Control Flow Graph and Cyclomatic
+Complexity.
+Test cases were designed to achieve statement, branch, and path coverage.
+This ensured that all logical paths of the program were validated, improving code reliability and
+error detection.

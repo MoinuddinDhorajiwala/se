@@ -1,0 +1,103 @@
+Experiment 3 – Use of Metrics to Estimate the Cost
+(Including Testing Efforts)
+Aim
+To study and apply software engineering metrics—Lines of Code (LOC), Function Point
+(FP), and COCOMO—to estimate the cost, effort, and resources required for software
+development, including testing efforts such as unit, integration, system, and validation testing.
+Theory
+Software cost estimation is the process of predicting the effort, time, and cost required to develop
+and test a software system.
+Testing activities typically account for 30–50% of total project effort, so including them in
+estimation is critical for accurate budgeting and resource planning.
+Common Metrics Used:
+1. Lines of Code (LOC):
+o Measures system size by counting the number of lines in the source code
+(including test code).
+o Effort = (Total LOC) / (Productivity Rate)
+o Example: 500 LOC/person-month.
+o Simple but language-dependent.
+2. Function Point (FP) Analysis:
+o Measures the functionality of a system independent of programming language.
+o Based on inputs, outputs, inquiries, files, and interfaces.
+o Effort = (FP count) / (Productivity Rate).
+o Useful for early estimation and validation testing.
+3. COCOMO (Constructive Cost Model):
+o Uses size (in KLOC) and cost drivers (complexity, reliability, experience) to
+estimate effort and development time.
+o Basic COCOMO Formula:
+Effort (PM)=a×(KLOC)b\text{Effort (PM)} = a \times
+(\text{KLOC})^bEffort (PM)=a×(KLOC)b
+Development Time (TDEV)=c×(Effort)d\text{Development Time (TDEV)} = c \times
+(\text{Effort})^dDevelopment Time (TDEV)=c×(Effort)d
+o Testing effort can be modeled by increasing cost drivers or including testing LOC
+in total KLOC.
+Testing Context
+• Unit Testing: Code-level testing using JUnit.
+• Integration Testing: Verifies interactions between modules (JUnit + Testcontainers).
+• System Testing: End-to-end validation (e.g., RestAssured).
+• Validation Testing: Ensures user requirements are met (e.g., Cucumber).
+Testing effort is included by allocating a percentage (25–40%) of total project effort or by
+explicitly including test code in LOC/FP counts.
+Software / Tools Used
+• Programming & IDE: Java with IntelliJ IDEA or Eclipse
+• Testing Tools: JUnit 5, Testcontainers, RestAssured, Cucumber
+• Estimation Tools: Spreadsheet (Excel/Google Sheets) or Python scripts
+• COCOMO Calculator: For automated estimation
+• Project Management: Maven/Gradle setup for testing environment
+Procedure
+1. Identify the Project
+o Select a system (e.g., Inventory or Library Management System).
+o Define scope and testing requirements (unit, integration, system, validation).
+2. Select Metrics
+o Apply LOC, FP, and COCOMO methods for estimation.
+o Include test code LOC and test cases in calculations.
+3. Gather Data
+o Estimate production LOC and test LOC.
+o Count FP components: Inputs, Outputs, Inquiries, Files, Interfaces.
+o Determine project type for COCOMO (Organic/Semi-Detached/Embedded).
+4. Apply Formulas
+o LOC:
+Effort=LOCProductivity Rate\text{Effort} = \frac{\text{LOC}}{\text{Productivity
+Rate}}Effort=Productivity RateLOC
+o FP:
+Effort=FP CountProductivity\text{Effort} = \frac{\text{FP
+Count}}{\text{Productivity}}Effort=ProductivityFP Count
+o COCOMO:
+Effort=a×(KLOC)b\text{Effort} = a \times (\text{KLOC})^bEffort=a×(KLOC)b
+o Include testing as an additional percentage or as part of total LOC/KLOC.
+5. Compute Cost
+Cost=Effort (person-months)×Cost per person-month\text{Cost} = \text{Effort (person-months)}
+\times \text{Cost per person-month}Cost=Effort (person-months)×Cost per person-month
+(Assume ₹1,00,000 per person-month.)
+6. Compare and Analyze
+o Compare LOC, FP, and COCOMO results.
+o Note testing contribution to total effort and cost.
+Observation / Example
+For a Java-based Inventory System (20 KLOC total — 15 KLOC production + 5 KLOC test
+code):
+• LOC-Based Estimation:
+Productivity = 500 LOC/person-month
+Effort = 20,000 / 500 = 40 person-months
+Cost = 40 × ₹1,00,000 = ₹40,00,000
+• FP-Based Estimation:
+Total = 100 Function Points, 10 FP/person-month
+Effort = 10 person-months
+Testing Effort = 5 person-months (50% testing ratio)
+Total Cost = 15 × ₹1,00,000 = ₹15,00,000
+• COCOMO (Organic Type):
+Effort ≈ 52.2 person-months (including ~20 for testing)
+Duration ≈ 11 months
+Cost ≈ ₹52,20,000
+Observation Summary:
+• LOC may overestimate due to inclusion of test code.
+• FP may underestimate for large systems but good for early testing estimates.
+• COCOMO provides the most realistic estimation when testing cost drivers are
+considered.
+Result / Conclusion
+Software cost estimation using LOC, FP, and COCOMO metrics was successfully applied.
+The experiment demonstrated that:
+• Testing contributes significantly (25–40%) to total cost and effort.
+• LOC is simple but language-dependent.
+• FP provides language-independent early estimates.
+• COCOMO gives comprehensive and realistic results for combined development and
+testing.
